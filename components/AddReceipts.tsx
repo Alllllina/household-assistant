@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 const AddReceipts = () => {
     const [addedValue, setAddedValue] = useState<string>('');
     const [receiptsArray, setReceiptsArray] = useState<string[]>([]);
+    const [selectedReceipt, setSelectedReceipt] = useState<string>('');
 
 
     function addHandler(e: any){
@@ -17,6 +18,10 @@ const AddReceipts = () => {
         const currentValue = e.target.value;
         setAddedValue(currentValue);
     }
+
+    function randomHandler(){
+        setSelectedReceipt(receiptsArray[Math.floor(Math.random()*receiptsArray.length)]);
+    }
     
  return (
      <div>
@@ -26,6 +31,8 @@ const AddReceipts = () => {
                 {receiptsArray.map((item, i)=>{
                     return <li key={item}>{item}</li>})}
                 </ul>}
+        <button onClick={randomHandler}>Что приготовить?</button> 
+        <div>{selectedReceipt}</div>      
      </div>
  )
 }
