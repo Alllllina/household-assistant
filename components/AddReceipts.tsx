@@ -1,23 +1,31 @@
 import * as React from 'react'
-import { useState  } from 'react'
+import { useState, useEffect } from 'react'
 
-const AddReceipts: React.FC<any> = () => {
-    const [addedValue,setAddedValue] = useState('');
+const AddReceipts = () => {
+    const [addedValue, setAddedValue] = useState<string>('');
+    const [receiptsArray, setReceiptsArray] = useState<string[]>([]);
 
-    function addHandler(){
-        if(addedValue) {
-            console.log(addedValue);
+
+    function addHandler(e: any){
+        console.info(receiptsArray.includes(addedValue));
+        if(addedValue && !receiptsArray.includes(addedValue)) {
+            setReceiptsArray([...receiptsArray, addedValue]);
         }
     }
 
     function onChangeInput (e: any) {
-        setAddedValue(e.target.value)
+        const currentValue = e.target.value;
+        setAddedValue(currentValue);
     }
     
  return (
      <div>
-        <input type="text" onChange={e => onChangeInput(e)}/>
-        <button onClick={addHandler}>Добавить рецепт</button>
+        <input type="text" onChange={onChangeInput}/>
+        <button onClick={e => addHandler(e)}>Добавить рецепт</button>
+        {receiptsArray && receiptsArray.length > 0 && <ul>
+                {receiptsArray.map((item, i)=>{
+                    return <li key={item}>{item}</li>})}
+                </ul>}
      </div>
  )
 }
