@@ -1,0 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeateres = ["mongodb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = mongodb+srv://alllina:mOEhc6atQMPBuQwz@https://data.mongodb-api.com/app/data-dnofm/endpoint/data/beta
+}
+
+model Receipt {
+  id        String      @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  name      String   @unique
+}

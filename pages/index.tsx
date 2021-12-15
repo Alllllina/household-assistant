@@ -10,12 +10,14 @@ const Home: NextPage = () => {
       <Head>
         <title>Household assistant</title>
         <meta name="description" content="Household assistant" />
-        <link rel="icon" href="/images/logo/woman_cook.ico" />
+        {/* <link rel="icon" href="/images/logo/woman_cook.ico" /> */}
       </Head>
 
       <main className={styles.main}>
+        <Image src="/womancook.svg" alt="Household" width={150} height={150} />  
         <h1 className={styles.title}>
-          Welcome to site!
+          Household assistant <br>
+          </br>решит твою проблему!
         </h1>
         <AddReceipts/>
       </main>
